@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Dota2 表情昵称制作器 - by 月哥</title>
+<meta charset=utf-8>
+<style>
+input {
+	width: 500px;
+	font-family:"Consolas",mono;
+}
+#nickname {
+	height: 40px;
+}
+h1,h3{
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+img {
+ cursor: -webkit-grab; cursor: grab;
+}
+</style>
+</head>
+
+<body>
+
+
+<pre>
+<center>
+
+<img src=img/demo1.png>
+
+<h1>Dota2 表情昵称制作器</h1>
+
+在下面点击选择你想要的表情昵称,注意不要超过5个字符
+点击下面的 <font color='#4CAF50'><b>复制</b></font> 按钮, 然后切换到你的游戏设置昵称的地方，粘贴.
+这样你的角色昵称就会在输出的时候带有(<font color='red'>炫酷的表情</font>)
+赞吧!
+
+
+
+<input type=text maxlength=32 id=nickname placeholder="点击的表情会呈现在这里 ( < 不能超过5个字符)">
+<input type=button class=button value="复制" onclick="nickname.select(); document.execCommand('Copy'); alert('复制！然后把它粘贴到你的steam名称配置');">
+
+<div id=emoji></div>
+
+</pre>
+</center>
+
+
+</body>
+
+
+<script>
+	var max_emoji = 0xd4;
+	var n = 1;
+	for(var i = 1; i < max_emoji ; i++){
+		let x = document.createElement('img');
+		let code = i.toString(16).padStart(2,"0");
+		x.src = 'img/'+code+'.gif';
+		x.setAttribute('onclick',"nickname.value += '"+unescape('%ue0'+code)+"';");
+		emoji.appendChild(x); emoji.innerHTML+= "\t";
+		if(n++ % 15 == 0) emoji.innerHTML += "\n";
+	}
+
+</script>
+
+</html>
+
